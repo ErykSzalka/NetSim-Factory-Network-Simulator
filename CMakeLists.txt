@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # pliki źródłowe
 add_executable(NetSim
-        src/Package.cpp
+        src/package/Package.cpp
+        src/package/PackageQueue.cpp
 )
 
-# katalog z nagłówkami
 target_include_directories(NetSim PRIVATE include)
