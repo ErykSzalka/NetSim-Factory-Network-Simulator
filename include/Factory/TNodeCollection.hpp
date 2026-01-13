@@ -22,15 +22,15 @@ class NodeCollection{
     using const_iterator = typename container_t::const_iterator;
 
     void add(Node&& node);
-    NodeCollection<Node>::const_iterator find_by_id(ElementID id);
-    NodeCollection<Node>::iterator find_by_id(ElementID id);
+    const_iterator find_by_id(ElementID id) const;
+    iterator find_by_id(ElementID id);
     void remove_by_id(ElementID id);
 
-    [[nodiscard]] iterator begin() const override;
-    [[nodiscard]] iterator end() const override;
-    [[nodiscard]] const_iterator cbegin() const override;
-    [[nodiscard]] const_iterator cend() const override;
+    [[nodiscard]] iterator begin();
+    [[nodiscard]] iterator end();
+    [[nodiscard]] const_iterator cbegin() const;
+    [[nodiscard]] const_iterator cend() const;
 
     private:
-      container_t Nodes_;
+      container_t nodes_;
 };
