@@ -7,8 +7,7 @@
 
 #endif //TNODECOLLECTION_HPP
 
-#include "package/types.hpp"
-//#include "Factory/types.hpp"
+#include "types.hpp"
 #include <vector>
 
 //Definicje metod klasy szablonowej muszą znajdować się w pliku nagłówkowym.
@@ -26,8 +25,8 @@ class NodeCollection{
     iterator find_by_id(ElementID id);
     void remove_by_id(ElementID id);
 
-    [[nodiscard]] iterator begin();
-    [[nodiscard]] iterator end();
+    [[nodiscard]] iterator begin() const;
+    [[nodiscard]] iterator end() const;
     [[nodiscard]] const_iterator cbegin() const;
     [[nodiscard]] const_iterator cend() const;
 
