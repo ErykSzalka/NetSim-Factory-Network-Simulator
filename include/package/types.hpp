@@ -5,9 +5,24 @@
 #ifndef NETSIM_TYPES_HPP
 #define NETSIM_TYPES_HPP
 using ElementID = unsigned int;
+#include <functional>
 
-enum class PackageQueueType {
-    FIFO, LIFO
+enum class PackageQueueType
+{
+    FIFO,
+    LIFO
 };
 
-#endif //NETSIM_TYPES_HPP
+enum class ReceiverType
+{
+    WORKER,
+    STOREHOUSE
+};
+
+using Time = int;
+
+using TimeOffset = int;
+
+using ProbabilityGenerator = std::function<double()>;
+
+#endif // NETSIM_TYPES_HPP
