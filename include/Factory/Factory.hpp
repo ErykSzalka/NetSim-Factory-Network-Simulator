@@ -7,7 +7,7 @@
 
 #endif //FACTORY_H
 #include "Factory/TNodeCollection.hpp"
-#include "package/types.hpp"
+#include "types.hpp"
 
 class Factory {
 
