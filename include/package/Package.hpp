@@ -6,7 +6,7 @@
 #define NETSIM_PACKAGE_HPP
 #include <set>
 
-#include "package/types.hpp"
+#include "types.hpp"
 
 class Package {
     public:
