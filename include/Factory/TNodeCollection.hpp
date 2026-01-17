@@ -10,7 +10,7 @@
 #include "types.hpp"
 #include <vector>
 
-//Definicje metod klasy szablonowej muszą znajdować się w pliku nagłówkowym.
+
 template<typename Node>
 
 class NodeCollection{
@@ -24,12 +24,10 @@ class NodeCollection{
     void add(Node&& node){
 		nodes_.push_back(std::move(node));
     }
-    const_iterator find_by_id(ElementID id) const;    //gotowe
-    iterator find_by_id(ElementID id);    //gotowe
+    const_iterator find_by_id(ElementID id) const;
+    iterator find_by_id(ElementID id);
 
-    void remove_by_id(ElementID id);   //gotowe
-
-
+    void remove_by_id(ElementID id);
 
     [[nodiscard]] iterator begin(){
       return nodes_.begin();
