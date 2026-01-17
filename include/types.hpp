@@ -4,8 +4,9 @@
 
 #ifndef NETSIM_TYPES_HPP
 #define NETSIM_TYPES_HPP
-using ElementID = unsigned int;
 #include <functional>
+
+using ElementID = unsigned int;
 
 enum class PackageQueueType
 {
