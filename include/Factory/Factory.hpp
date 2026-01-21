@@ -85,8 +85,7 @@ class Factory {
     void do_deliveries(){
       for (Ramp& ramp : ramps_){ramp.deliver_goods(time_);}
       }
-    void do_package_passing();   //kłopoty
-      //for (Worker& worker : workers_){worker.receive_package(Package&);}
+    void do_package_passing();
     void do_work(){
       for (Worker& worker : workers_){worker.do_work(time_);}
       }

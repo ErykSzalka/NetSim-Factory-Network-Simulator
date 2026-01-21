@@ -2,6 +2,17 @@
 // Created by frane on 12.01.2026.
 //
 #include "Factory/Factory.hpp"
+#include "Nodes/PackageSender.hpp"
+
+void Factory::do_package_passing(){
+  for(auto& ramp : ramps_){
+    ramp.send_package();
+  }
+
+  for(auto& worker : workers_){
+    worker.send_package();
+  }
+}
 
 bool has_reachable_storehouse(const PackageSender* sender, std::map<const PackageSender*, NodeColor>& node_colors) {
 
@@ -70,6 +81,27 @@ bool Factory::is_consistent() const {
     return false;
   }
 
-
   return true;
 }
+
+template<typename Node>
+void Factory::remove_receiver(NodeCollection<Node>& collection, ElementID id){
+
+  auto it = collection.find(id);
+  if (it == collection.end()) {
+    return;
+  }
+
+  IPackageReceiver* receiver_ptr = &(*it);
+
+  for(auto& ramp : ramps_) {
+    ramp.receiver_preferences_.remove_receiver(receiver_ptr);
+  }
+
+  for(auto& worker : workers_) {
+    worker.receiver_preferences_.remove_receiver(receiver_ptr);
+  }
+
+  collection.remove_by_id(id);
+}
+

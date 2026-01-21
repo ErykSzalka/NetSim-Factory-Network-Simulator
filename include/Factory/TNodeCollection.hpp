@@ -24,6 +24,7 @@ class NodeCollection{
     void add(Node&& node){
 		nodes_.push_back(std::move(node));
     }
+
     const_iterator find_by_id(ElementID id) const;
     iterator find_by_id(ElementID id);
 
