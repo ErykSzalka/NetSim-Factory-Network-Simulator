@@ -6,7 +6,7 @@
 #define NETSIM_PACKAGEQUEUE_HPP
 #include <list>
 
-#include "package/IPackageQueue.hpp"
+#include "Package/IPackageQueue.hpp"
 class PackageQueue: public IPackageQueue {
 public:
     explicit PackageQueue(PackageQueueType type);

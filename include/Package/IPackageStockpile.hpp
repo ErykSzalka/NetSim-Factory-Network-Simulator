@@ -4,7 +4,7 @@
 
 #ifndef NETSIM_IPACKAGESTOCKPILE_HPP
 #define NETSIM_IPACKAGESTOCKPILE_HPP
-#include "package/Package.hpp"
+#include "Package/Package.hpp"
 #include <list>
 #include <cstddef>
 class IPackageStockpile {

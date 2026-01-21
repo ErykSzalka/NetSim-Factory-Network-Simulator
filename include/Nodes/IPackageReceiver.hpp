@@ -2,8 +2,8 @@
 #define NETSIM_IPACKAGERECEIVER_HPP
 
 #include "types.hpp"
-#include "package/Package.hpp"
-#include "package/IPackageStockpile.hpp"
+#include "Package/Package.hpp"
+#include "Package/IPackageStockpile.hpp"
 
 class IPackageReceiver
 {

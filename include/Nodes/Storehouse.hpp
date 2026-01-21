@@ -3,7 +3,7 @@
 
 #include <memory>
 #include "IPackageReceiver.hpp"
-#include "package/IPackageStockpile.hpp"
+#include "Package/IPackageStockpile.hpp"
 
 class Storehouse : public IPackageReceiver
 {
