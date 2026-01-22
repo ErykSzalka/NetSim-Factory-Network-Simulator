@@ -2,7 +2,7 @@
 #define NETSIM_RECEIVERPREFERENCES_HPP
 
 #include <map>
-#include "package/types.hpp"
+#include "types.hpp"
 
 class IPackageReceiver;
 

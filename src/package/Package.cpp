@@ -1,7 +1,7 @@
 //
 // Created by eszal on 6.01.2026.
 //
-#include "package/Package.hpp"
+#include "Package/Package.hpp"
 #include <stdexcept>
 std::set<ElementID> Package::assigned_ids;
 std::set<ElementID> Package::freed_ids;

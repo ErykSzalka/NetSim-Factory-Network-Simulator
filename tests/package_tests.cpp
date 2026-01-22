@@ -2,8 +2,8 @@
 // Created by eszal on 13.01.2026.
 //
 #include <gtest/gtest.h>
-#include "package/Package.hpp"
-#include "package/PackageQueue.hpp"
+#include "Package/Package.hpp"
+#include "Package/PackageQueue.hpp"
 TEST(PackageTest, IsAssignedIdLowest) {
     // przydzielanie ID o jeden większych -- utworzenie dwóch obiektów pod rząd
 

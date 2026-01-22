@@ -2,7 +2,7 @@
 #define NETSIM_PACKAGESENDER_HPP
 
 #include <optional>
-#include "package/Package.hpp"
+#include "Package/package.hpp"
 #include "ReceiverPreferences.hpp"
 
 class PackageSender

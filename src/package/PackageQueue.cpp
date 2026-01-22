@@ -1,7 +1,7 @@
 //
 // Created by eszal on 6.01.2026.
 //
-#include "package/PackageQueue.hpp"
+#include "Package/PackageQueue.hpp"
 #include <utility>
 PackageQueue::PackageQueue(PackageQueueType type) : type_(type) {}
 

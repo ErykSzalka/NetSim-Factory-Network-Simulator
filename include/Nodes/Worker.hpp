@@ -6,7 +6,7 @@
 
 #include "PackageSender.hpp"
 #include "IPackageReceiver.hpp"
-#include "package/IPackageQueue.hpp"
+#include "Package/IPackageQueue.hpp"
 
 class Worker : public PackageSender, public IPackageReceiver
 {

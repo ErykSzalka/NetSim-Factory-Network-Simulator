@@ -4,7 +4,7 @@
 
 #ifndef NETSIM_IPACKAGEQUEUE_HPP
 #define NETSIM_IPACKAGEQUEUE_HPP
-#include "package/IPackageStockpile.hpp"
+#include "Package/IPackageStockpile.hpp"
 class IPackageQueue: public IPackageStockpile {
 public:
     virtual Package pop() = 0;

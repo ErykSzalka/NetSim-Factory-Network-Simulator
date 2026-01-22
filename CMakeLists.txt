@@ -17,8 +17,8 @@ FetchContent_MakeAvailable(googletest)
 
 # ================== MAIN PROGRAM ==================
 add_executable(NetSim
-        src/package/Package.cpp
-        src/package/PackageQueue.cpp
+        src/Package/Package.cpp
+        src/Package/PackageQueue.cpp
         src/Nodes/ReceiverPreferences.cpp
         src/Nodes/PackageSender.cpp
         src/Nodes/Worker.cpp
@@ -30,9 +30,11 @@ target_include_directories(NetSim PRIVATE include)
 
 # ================== TESTS ==================
 add_executable(NetSim_tests
-        tests/package_tests.cpp
-        src/package/Package.cpp
-        src/package/PackageQueue.cpp
+        tests/Package_tests.cpp
+        src/Package/Package.cpp
+        src/Package/PackageQueue.cpp
+        tests/nodes_tests.cpp
+        tests/factory_tests.cpp
 )
 
 target_include_directories(NetSim_tests PRIVATE include)
