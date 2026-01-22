@@ -16,7 +16,7 @@ public:
 
     [[nodiscard]] const std::optional<Package> &get_sending_buffer() const;
 
-    void push_package(Package &&p);
+    void push_package(Package&& p);
 
     ReceiverPreferences receiver_preferences_;
 

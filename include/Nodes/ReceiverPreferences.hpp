@@ -18,7 +18,7 @@ public:
     void add_receiver(IPackageReceiver *r);
     void remove_receiver(IPackageReceiver *r);
 
-    [[nodiscard]] IPackageReceiver *choose_receiver();
+    [[nodiscard]] IPackageReceiver *choose_receiver() const;
     [[nodiscard]] const preferences_t &get_preferences() const;
 
     [[nodiscard]] const_iterator begin() const;
