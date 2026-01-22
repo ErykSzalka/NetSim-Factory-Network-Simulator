@@ -4,8 +4,14 @@
 
 #ifndef NETSIM_TYPES_HPP
 #define NETSIM_TYPES_HPP
-using ElementID = unsigned int;
 #include <functional>
+#include <stdexcept>
+
+#include "Nodes/PackageSender.hpp"
+#include "Nodes/IPackageReceiver.hpp"
+
+
+using ElementID = unsigned int;
 
 enum class PackageQueueType
 {
@@ -24,5 +30,7 @@ using Time = int;
 using TimeOffset = int;
 
 using ProbabilityGenerator = std::function<double()>;
+
+enum class NodeColor { UNVISITED, VISITED, VERIFIED };
 
 #endif // NETSIM_TYPES_HPP
