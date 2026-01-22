@@ -2,7 +2,7 @@
 #define NETSIM_PACKAGESENDER_HPP
 
 #include <optional>
-#include "package.hpp"
+#include "package/Package.hpp"
 #include "ReceiverPreferences.hpp"
 
 class PackageSender
@@ -16,7 +16,7 @@ public:
 
     [[nodiscard]] const std::optional<Package> &get_sending_buffer() const;
 
-    void push_package(Package &&p);
+    void push_package(Package&& p);
 
     ReceiverPreferences receiver_preferences_;
 

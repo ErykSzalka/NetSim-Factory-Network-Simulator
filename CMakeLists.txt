@@ -19,6 +19,11 @@ FetchContent_MakeAvailable(googletest)
 add_executable(NetSim
         src/package/Package.cpp
         src/package/PackageQueue.cpp
+        src/Nodes/ReceiverPreferences.cpp
+        src/Nodes/PackageSender.cpp
+        src/Nodes/Worker.cpp
+        src/Nodes/Ramp.cpp
+        src/Nodes/Storehouse.cpp
 )
 
 target_include_directories(NetSim PRIVATE include)
