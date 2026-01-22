@@ -11,7 +11,6 @@
 #include "Nodes/Ramp.hpp"
 #include "Nodes/Worker.hpp"
 #include "Nodes/Storehouse.hpp"
-#include "package/Package.hpp"
 
 class Factory {
 
