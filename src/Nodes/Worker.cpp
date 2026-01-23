@@ -19,7 +19,9 @@ void Worker::do_work(Time t) {
         }
     }
 }
-
+IPackageQueue* Worker::get_queue() const {
+    return q_.get();
+}
 void Worker::receive_package(Package&& p) {
     q_->push(std::move(p));
 }

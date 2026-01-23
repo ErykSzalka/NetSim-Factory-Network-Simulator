@@ -24,6 +24,7 @@ add_executable(NetSim
         src/Nodes/Worker.cpp
         src/Nodes/Ramp.cpp
         src/Nodes/Storehouse.cpp
+        src/IO/io_fun.cpp
 )
 
 target_include_directories(NetSim PRIVATE include)
@@ -35,6 +36,7 @@ add_executable(NetSim_tests
         src/Package/PackageQueue.cpp
         tests/nodes_tests.cpp
         tests/factory_tests.cpp
+        src/IO/io_fun.cpp
 )
 
 target_include_directories(NetSim_tests PRIVATE include)
