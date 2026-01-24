@@ -6,18 +6,18 @@
 
 
 void PackageSender::push_package(Package&& p) {
-    buffer_.emplace(std::move(p));
+    sending_buffer_.emplace(std::move(p));
 }
 
-const std::optional<Package>& PackageSender::get_sending_buffer() const {
-    return buffer_;
+std::optional<Package>& PackageSender::get_sending_buffer() {
+    return sending_buffer_;
 }
 
 void PackageSender::send_package() {
-    if (buffer_) {
+    if (sending_buffer_) {
         if (IPackageReceiver* receiver = receiver_preferences_.choose_receiver()) {
-            receiver->receive_package(std::move(*buffer_));
-            buffer_.reset();
+            receiver->receive_package(std::move(*sending_buffer_));
+            sending_buffer_.reset();
         }
     }
 }

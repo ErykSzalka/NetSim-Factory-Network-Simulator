@@ -5,59 +5,61 @@
 #include "Nodes/IPackageReceiver.hpp"
 #include <algorithm>
 
-using ReceiverPair = std::pair<IPackageReceiver* const, double>;
+ReceiverPreferences::ReceiverPreferences(ProbabilityGenerator pg)
+    : pg_(pg) {}
 
 void ReceiverPreferences::add_receiver(IPackageReceiver* r) {
-    auto num_of_receivers = preferences_.size();
-    if (num_of_receivers == 0) {
-        preferences_[r] = 1.0;
-    } else {
-        auto new_prob = 1.0 / static_cast<double>(num_of_receivers + 1);
-        for (auto& item : preferences_) {
-            item.second = new_prob;
-        }
-        preferences_[r] = new_prob;
+    if (!r) return;
+
+    preferences_[r] = 1.0;
+
+    double scale = 1.0 / preferences_.size();
+    for (auto& [_, prob] : preferences_) {
+        prob = scale;
     }
 }
 
 void ReceiverPreferences::remove_receiver(IPackageReceiver* r) {
-    auto it = preferences_.find(r);
-    if (it == preferences_.end()) return;
+    preferences_.erase(r);
 
-    preferences_.erase(it);
+    if (preferences_.empty()) return;
 
-    auto num_of_receivers = preferences_.size();
-    if (num_of_receivers == 0) return;
-
-    auto new_prob = 1.0 / static_cast<double>(num_of_receivers);
-    for (auto& item : preferences_) {
-        item.second = new_prob;
+    double scale = 1.0 / preferences_.size();
+    for (auto& [_, prob] : preferences_) {
+        prob = scale;
     }
 }
 
-IPackageReceiver* ReceiverPreferences::choose_receiver() const {
-    double prob = pg_();
+IPackageReceiver* ReceiverPreferences::choose_receiver() {
+    if (preferences_.empty()) return nullptr;
 
-    if (prob >= 0 && prob <= 1) {
-        double distribution = 0.0;
-        for (const auto& item : preferences_) {
-            distribution += item.second;
-            if (prob <= distribution) {
-                return item.first;
-            }
-        }
-        if (!preferences_.empty()) {
-            return preferences_.rbegin()->first;
+    double p = pg_();
+    double cumulative = 0.0;
+
+    for (auto& [receiver, prob] : preferences_) {
+        cumulative += prob;
+        if (p < cumulative) {
+            return receiver;
         }
     }
-    return nullptr;
+
+    return preferences_.rbegin()->first;
 }
 
-const ReceiverPreferences::preferences_t& ReceiverPreferences::get_preferences() const {
+const ReceiverPreferences::preferences_t&
+ReceiverPreferences::get_preferences() const {
     return preferences_;
 }
 
-ReceiverPreferences::const_iterator ReceiverPreferences::begin() const { return preferences_.begin(); }
-ReceiverPreferences::const_iterator ReceiverPreferences::end() const { return preferences_.end(); }
-ReceiverPreferences::const_iterator ReceiverPreferences::cbegin() const { return preferences_.cbegin(); }
-ReceiverPreferences::const_iterator ReceiverPreferences::cend() const { return preferences_.cend(); }
+ReceiverPreferences::const_iterator ReceiverPreferences::begin() const {
+    return preferences_.begin();
+}
+ReceiverPreferences::const_iterator ReceiverPreferences::end() const {
+    return preferences_.end();
+}
+ReceiverPreferences::const_iterator ReceiverPreferences::cbegin() const {
+    return preferences_.cbegin();
+}
+ReceiverPreferences::const_iterator ReceiverPreferences::cend() const {
+    return preferences_.cend();
+}

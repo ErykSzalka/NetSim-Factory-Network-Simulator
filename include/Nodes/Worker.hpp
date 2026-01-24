@@ -12,6 +12,7 @@ class Worker : public PackageSender, public IPackageReceiver
 {
 public:
     Worker(ElementID id, TimeOffset pd, std::unique_ptr<IPackageQueue> q);
+    [[nodiscard]] IPackageQueue* get_queue() const;
 
     void do_work(Time t);
 
@@ -31,7 +32,7 @@ private:
     ElementID id_;
     TimeOffset pd_;
     std::unique_ptr<IPackageQueue> q_;
-    Time processing_start_time_ = 0;
+    std::optional<Time> processing_start_time_;
     std::optional<Package> processed_package_ = std::nullopt;
 };
 

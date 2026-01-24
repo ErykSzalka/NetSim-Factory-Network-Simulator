@@ -15,8 +15,12 @@
 class Factory {
 
   public:
-    Factory() = default;
-	~Factory() = default;
+  Factory() = default;
+  Factory(const Factory&) = delete;
+  Factory& operator=(const Factory&) = delete;
+  Factory(Factory&&) = default;
+  Factory& operator=(Factory&&) = default;
+  ~Factory() = default;
 
     //Ramps
     void add_ramp(Ramp&& ramp){
@@ -85,9 +89,9 @@ class Factory {
       for (Ramp& ramp : ramps_){ramp.deliver_goods(time_);}
       }
     void do_package_passing();
-    void do_work(){
-      for (Worker& worker : workers_){worker.do_work(time_);}
-      }
+    void do_work(Time t);
+
+
     bool is_consistent() const;
 
 

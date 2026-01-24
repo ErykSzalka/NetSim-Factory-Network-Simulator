@@ -24,6 +24,8 @@ add_executable(NetSim
         src/Nodes/Worker.cpp
         src/Nodes/Ramp.cpp
         src/Nodes/Storehouse.cpp
+        src/IO/io_fun.cpp
+        src/types.cpp
 )
 
 target_include_directories(NetSim PRIVATE include)
@@ -31,10 +33,20 @@ target_include_directories(NetSim PRIVATE include)
 # ================== TESTS ==================
 add_executable(NetSim_tests
         tests/Package_tests.cpp
-        src/Package/Package.cpp
-        src/Package/PackageQueue.cpp
         tests/nodes_tests.cpp
         tests/factory_tests.cpp
+        tests/io_tests.cpp
+        src/Package/Package.cpp
+        src/Package/PackageQueue.cpp
+        src/IO/io_fun.cpp
+        src/Factory/Factory.cpp
+        src/Nodes/PackageSender.cpp
+        src/Nodes/Ramp.cpp
+        src/Nodes/ReceiverPreferences.cpp
+        src/Nodes/Storehouse.cpp
+        src/Nodes/Worker.cpp
+        src/types.cpp
+
 )
 
 target_include_directories(NetSim_tests PRIVATE include)
