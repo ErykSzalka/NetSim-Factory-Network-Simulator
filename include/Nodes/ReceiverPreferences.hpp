@@ -12,13 +12,14 @@ public:
     using preferences_t = std::map<IPackageReceiver *, double>;
     using const_iterator = preferences_t::const_iterator;
 
-    explicit ReceiverPreferences(ProbabilityGenerator pg = [](double d = 1.0)
-                                 { return 0.0; });
+    explicit ReceiverPreferences(
+        ProbabilityGenerator pg = probability_generator
+    );
 
     void add_receiver(IPackageReceiver *r);
     void remove_receiver(IPackageReceiver *r);
 
-    [[nodiscard]] IPackageReceiver *choose_receiver() const;
+    [[nodiscard]] IPackageReceiver *choose_receiver();
     [[nodiscard]] const preferences_t &get_preferences() const;
 
     [[nodiscard]] const_iterator begin() const;

@@ -13,7 +13,7 @@ void Worker::do_work(Time t) {
     }
 
     if (processed_package_) {
-        if (t - processing_start_time_ + 1 == pd_) {
+        if (t - *processing_start_time_ + 1 == pd_) {
             push_package(std::move(*processed_package_));
             processed_package_.reset();
         }
@@ -27,7 +27,7 @@ void Worker::receive_package(Package&& p) {
 }
 
 TimeOffset Worker::get_processing_duration() const { return pd_; }
-Time Worker::get_package_processing_start_time() const { return processing_start_time_; }
+Time Worker::get_package_processing_start_time() const {return processing_start_time_.value_or(0); }
 ElementID Worker::get_id() const { return id_; }
 
 Worker::const_iterator Worker::begin() const { return q_->begin(); }

@@ -5,6 +5,7 @@
 #ifndef NETSIM_TYPES_HPP
 #define NETSIM_TYPES_HPP
 #include <functional>
+#include <random>
 #include <stdexcept>
 
 
@@ -30,5 +31,10 @@ using TimeOffset = int;
 using ProbabilityGenerator = std::function<double()>;
 
 enum class NodeColor { UNVISITED, VISITED, VERIFIED };
+extern std::random_device rd;
+extern std::mt19937 rng;
 
+extern double default_probability_generator();
+
+extern ProbabilityGenerator probability_generator;
 #endif // NETSIM_TYPES_HPP

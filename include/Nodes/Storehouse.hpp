@@ -4,11 +4,12 @@
 #include <memory>
 #include "IPackageReceiver.hpp"
 #include "Package/IPackageStockpile.hpp"
+#include "Package/PackageQueue.hpp"
 
 class Storehouse : public IPackageReceiver
 {
 public:
-    Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> d = nullptr);
+    explicit Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> d = std::make_unique<PackageQueue>(PackageQueueType::FIFO));
 
     void receive_package(Package &&p) override;
     [[nodiscard]] ElementID get_id() const override;

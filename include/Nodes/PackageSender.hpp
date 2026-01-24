@@ -5,23 +5,20 @@
 #include "Package/package.hpp"
 #include "ReceiverPreferences.hpp"
 
-class PackageSender
-{
+class PackageSender {
 public:
-    PackageSender() = default;
-    PackageSender(PackageSender &&) = default;
-    virtual ~PackageSender() = default;
-
-    void send_package();
-
-    [[nodiscard]] const std::optional<Package> &get_sending_buffer() const;
-
-    void push_package(Package&& p);
-
     ReceiverPreferences receiver_preferences_;
 
+    PackageSender() = default;
+    PackageSender(PackageSender&&) = default;
+
+    void push_package(Package&& p);
+    void send_package();
+
+    std::optional<Package>& get_sending_buffer();
+
 protected:
-    std::optional<Package> buffer_ = std::nullopt;
+    std::optional<Package> sending_buffer_;
 };
 
 #endif // NETSIM_PACKAGESENDER_HPP

@@ -38,8 +38,8 @@ bool has_reachable_storehouse(const PackageSender* sender, std::map<const Packag
 
         if (receiver_ptr->get_receiver_type() == ReceiverType::WORKER) {
 
-            Worker* worker_ptr = dynamic_cast<Worker*>(receiver_ptr);
-            PackageSender* sendercv_ptr = dynamic_cast<PackageSender*>(worker_ptr);
+            auto* worker_ptr = dynamic_cast<Worker*>(receiver_ptr);
+            auto* sendercv_ptr = dynamic_cast<PackageSender*>(worker_ptr);
 
             if (sendercv_ptr == sender) {  //na wypadek wysylania do samego siebie, nie powinno sie zdarzyć
                continue;
@@ -64,17 +64,17 @@ bool Factory::is_consistent() const {
 
   std::map<const PackageSender*, NodeColor> node_colors;
 
-  for (auto it = ramps_.cbegin(); it != ramps_.cend(); ++it) {
-      node_colors[dynamic_cast<const PackageSender*>(&(*it))] = NodeColor::UNVISITED;
+  for (const auto & ramp : ramps_) {
+      node_colors[dynamic_cast<const PackageSender*>(&ramp)] = NodeColor::UNVISITED;
   }
 
-  for (auto it = workers_.cbegin(); it != workers_.cend(); ++it) {
-      node_colors[dynamic_cast<const PackageSender*>(&(*it))] = NodeColor::UNVISITED;
+  for (const auto & worker : workers_) {
+      node_colors[dynamic_cast<const PackageSender*>(&worker)] = NodeColor::UNVISITED;
   }
 
   try {
-       for(auto it = ramps_.cbegin(); it != ramps_.cend(); ++it) {
-         has_reachable_storehouse(dynamic_cast<const PackageSender*>(&(*it)), node_colors);
+       for(const auto & ramp : ramps_) {
+         has_reachable_storehouse(dynamic_cast<const PackageSender*>(&ramp), node_colors);
        }
   }
   catch(const std::logic_error&) {
@@ -83,7 +83,10 @@ bool Factory::is_consistent() const {
 
   return true;
 }
-
+void Factory::do_work(Time t) {
+    for (auto& w : workers_)
+        w.do_work(t);
+}
 template<typename Node>
 void Factory::remove_receiver(NodeCollection<Node>& collection, ElementID id){
 

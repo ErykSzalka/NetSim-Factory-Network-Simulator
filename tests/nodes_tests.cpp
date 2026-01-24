@@ -1,7 +1,6 @@
 //
 // Created by eszal on 21.01.2026.
 //
-#pragma once
 #include <gtest/gtest.h>
 
 #include "Nodes/Worker.hpp"
